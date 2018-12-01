@@ -4,56 +4,86 @@ using System.Drawing.Imaging;
 using QRCoder;
 using System.IO;
 using ImageMagick;
-
+using System.Collections.Generic;
 
 namespace SQRA_generator
 {
     public class EngineSQRA
     {
-        public string Data { get; set; }
+        private List<string> data;
+        private int elementLength;
+        private int animationDelay;
 
-        public EngineSQRA(string aData)
+        public EngineSQRA(int aElementLength, int aAnimationDelay, string aData) 
         {
-            this.Data = aData;
+            data = new List<string>();
+
+            elementLength  = aElementLength;
+            animationDelay = aAnimationDelay;
+
+            while (aData.Length > elementLength)
+            {
+                var element = aData.Substring(0, elementLength);
+                aData = aData.Remove(0, elementLength);
+                data.Add(element);
+            }
+
+            if(aData.Length != 0)
+            {
+                data.Add(aData);
+            }
         }
 
-        public void GenerateFromData(string aData)
+        private void GeneratePngFileFromData(int aPartIndex, int aCount, string aPartData)
         {
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(aData, QRCodeGenerator.ECCLevel.Q);
-            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
-            byte[] qrCodeAsPngByteArr = qrCode.GetGraphic(20);
+            string sumData = aPartIndex.ToString() 
+                           + "|" 
+                           + aCount.ToString() 
+                           + "|" 
+                           + aPartData;
 
-            using (Image image = Image.FromStream(new MemoryStream(qrCodeAsPngByteArr)))
+
+            QRCodeGenerator qrCodeGenerator = new QRCodeGenerator();
+            QRCodeData           qrCodeData = qrCodeGenerator.CreateQrCode(sumData, QRCodeGenerator.ECCLevel.M);
+            PngByteQRCode            qrCode = new PngByteQRCode(qrCodeData);
+
+            byte[] qrCodeAsPngByteArray = qrCode.GetGraphic(20);
+
+            using (Image image = Image.FromStream(new MemoryStream(qrCodeAsPngByteArray)))
             {
-                image.Save("test1.png", ImageFormat.Png);
+                image.Save("test" + aPartIndex.ToString() + ".png", ImageFormat.Png);
+            }
+        }
+
+        private void GenerateGif(int aCount, int aAnimationDelay, string aGifName)
+        {
+            using (MagickImageCollection collection = new MagickImageCollection())
+            {
+                for (int i = 0; i < aCount; i++)
+                {
+                    collection.Add("test" + i.ToString() + ".png");
+                    collection[i].AnimationDelay = aAnimationDelay;
+                }
+
+                QuantizeSettings settings = new QuantizeSettings
+                {
+                    Colors = 256
+                };
+
+                collection.Quantize(settings);
+                collection.Optimize();
+
+                collection.Write(aGifName + ".gif");
             }
         }
 
         public void GenerateQRA()
         {
-            using (MagickImageCollection collection = new MagickImageCollection())
+            for (int i = 0; i < data.Count; i++)
             {
-                // Add first image and set the animation delay to 100ms
-                collection.Add("test0.png");
-                collection[0].AnimationDelay = 100;
-
-                // Add second image, set the animation delay to 100ms and flip the image
-                collection.Add("test1.png");
-                collection[1].AnimationDelay = 100;
-                collection[1].Flip();
-
-                // Optionally reduce colors
-                QuantizeSettings settings = new QuantizeSettings();
-                settings.Colors = 256;
-                collection.Quantize(settings);
-
-                // Optionally optimize the images (images should have the same size).
-                collection.Optimize();
-
-                // Save gif
-                collection.Write("test.gif");
+                GeneratePngFileFromData(i, data.Count, data[i]);
             }
+            GenerateGif(data.Count, animationDelay, "test");
         }
     }
 }
