@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using QRCoder;
 using System.IO;
+using ImageMagick;
 
 
 namespace SQRA_generator
@@ -25,7 +26,33 @@ namespace SQRA_generator
 
             using (Image image = Image.FromStream(new MemoryStream(qrCodeAsPngByteArr)))
             {
-                image.Save("test.png", ImageFormat.Png);
+                image.Save("test1.png", ImageFormat.Png);
+            }
+        }
+
+        public void GenerateQRA()
+        {
+            using (MagickImageCollection collection = new MagickImageCollection())
+            {
+                // Add first image and set the animation delay to 100ms
+                collection.Add("test0.png");
+                collection[0].AnimationDelay = 100;
+
+                // Add second image, set the animation delay to 100ms and flip the image
+                collection.Add("test1.png");
+                collection[1].AnimationDelay = 100;
+                collection[1].Flip();
+
+                // Optionally reduce colors
+                QuantizeSettings settings = new QuantizeSettings();
+                settings.Colors = 256;
+                collection.Quantize(settings);
+
+                // Optionally optimize the images (images should have the same size).
+                collection.Optimize();
+
+                // Save gif
+                collection.Write("test.gif");
             }
         }
     }
