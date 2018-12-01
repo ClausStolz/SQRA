@@ -1,8 +1,9 @@
-﻿using System;
+﻿
 using System.Drawing;
 using System.Drawing.Imaging;
 using QRCoder;
 using System.IO;
+
 
 namespace SQRA_generator
 {
@@ -18,11 +19,14 @@ namespace SQRA_generator
         public void GenerateFromData(string aData)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCodeGenerator.ECCLevel.Q);
-            SvgQRCode qrCode = new SvgQRCode(qrCodeData);
-            string qrCodeAsSvg = qrCode.GetGraphic(20);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(aData, QRCodeGenerator.ECCLevel.Q);
+            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
+            byte[] qrCodeAsPngByteArr = qrCode.GetGraphic(20);
 
-            File.WriteAllText("test.svg", qrCodeAsSvg);
+            using (Image image = Image.FromStream(new MemoryStream(qrCodeAsPngByteArr)))
+            {
+                image.Save("test.png", ImageFormat.Png);
+            }
         }
     }
 }
