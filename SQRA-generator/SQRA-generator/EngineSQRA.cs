@@ -65,6 +65,11 @@ namespace SQRA_generator
                     collection[i].AnimationDelay = aAnimationDelay;
                 }
 
+                foreach(var image in collection)
+                {
+                    image.Resize(250, 0);
+                }
+
                 QuantizeSettings settings = new QuantizeSettings
                 {
                     Colors = 256
