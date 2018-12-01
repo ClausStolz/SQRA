@@ -12,7 +12,14 @@ namespace Test_Server.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            //Dictionary<int, bool> testsDict = new Dictionary<int, bool>();
+            //testsDict.Add(1, true);
+            //testsDict.Add(2, false);
+            HomeModel HomeModel = new HomeModel();
+
+            //ViewBag.testsDict = testsDict;
+            ViewData["tests"] = HomeModel.ReturnDict().Count;
+            return View(ViewData);
         }
 
         public IActionResult About()
