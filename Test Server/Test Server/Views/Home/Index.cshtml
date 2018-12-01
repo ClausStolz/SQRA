@@ -10,26 +10,21 @@
 
     <div class="col-md-4">
         <h2>Scan this:</h2>
-            <img src="~/images/test.gif" width="200">
+        <img src="~/images/test.gif" width="200">
     </div>
     <div class="col-md-8">
-        <h2>Tests</h2>
-            <ul>
-                <li>
-                    КОЛЯ
-                </li>
-            </ul>
-        
-            <!-- <ul>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-             <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-         </ul>-->
+        <h2>Введите текст, который вы хотите закодировать</h2>
+        <form method="post" action="~/Home/Generate">
+            <textarea class="form-control" rows="5" name="text" cols="40"></textarea>
+            <p>
+                <br />
+                <input type="submit" value="Отправить">
+                <input type="reset" value="Очистить">
+            </p>
+        </form>
 
-        </div>
+
+
+    </div>
 
 </div>
