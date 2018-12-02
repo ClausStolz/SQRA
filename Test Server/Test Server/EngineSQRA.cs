@@ -13,6 +13,7 @@ namespace SQRA_generator
         private List<string> data;
         private int elementLength;
         private int animationDelay;
+        private string path = @"wwwroot\generated\";
 
         public EngineSQRA(int aElementLength, int aAnimationDelay, string aData) 
         {
@@ -76,7 +77,7 @@ namespace SQRA_generator
                 collection.Quantize(settings);
                 collection.Optimize();
 
-                collection.Write(aGifName + ".gif");
+                collection.Write(path + aGifName + ".gif");
             }
         }
 
