@@ -353,4 +353,4 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
-.png
+*.png
