@@ -2,7 +2,7 @@ using NUnit.Framework;
 using SQRA.QR.Configurations;
 using SQRA.QR.Enums;
 
-namespace SQRA.Core.Test
+namespace SQRA.QR.Test
 {
     [TestFixture]
     public class TablesTest
