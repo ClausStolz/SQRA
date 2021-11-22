@@ -13,7 +13,10 @@ namespace SQRA.Core.Test
         [TestCase(new[] {5, 3, 5, 7, 9}, 10, -1)]
         public void GetFirstIndexTest(IList<int> obj, int value, int expectedIndex)
         {
-            Assert.AreEqual(obj.GetFirstIndex<int>(x => x >= value), expectedIndex);
+            Assert.AreEqual(
+                expectedIndex, 
+                obj.GetFirstIndex<int>(x => x >= value)
+            );
         }
     }
 }   

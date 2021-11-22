@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using SQRA.Infrastructure.Extensions;
 using SQRA.QR.Enums;
 
 namespace SQRA.QR.Configurations
@@ -7,14 +10,14 @@ namespace SQRA.QR.Configurations
     /// This configuration table contains the maximum size
     /// of information based on correction level and version.
     /// </summary>
-    public class MaxInformationSize
+    public static class MaxInformationSize
     {
         /// <summary>
         /// Table structure:
         /// 4 lines indicate correction level,
         /// 40 columns indicate version number
         /// </summary>
-        private Dictionary<CorrectionLevel, int[]> _informationSizeTable = new()
+        private static readonly Dictionary<CorrectionLevel, int[]> _informationSizeTable = new()
         {
             { 
                 CorrectionLevel.L, new[]
@@ -53,5 +56,11 @@ namespace SQRA.QR.Configurations
                 }
             }
         };
+
+        public static int GetOptimalVersion(CorrectionLevel correctionLevel, int dataSize)
+        {
+            var result = _informationSizeTable[correctionLevel].GetFirstIndex(x => x >= dataSize);
+            return  result < 0 ? result : result + 1;
+        }
     }
 }

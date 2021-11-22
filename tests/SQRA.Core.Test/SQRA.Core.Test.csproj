@@ -14,6 +14,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\SQRA.Infrastructure\SQRA.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\src\SQRA.QR\SQRA.QR.csproj" />
     </ItemGroup>
 
 </Project>
