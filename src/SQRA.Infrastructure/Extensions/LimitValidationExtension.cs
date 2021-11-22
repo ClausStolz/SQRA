@@ -10,7 +10,7 @@ namespace SQRA.Infrastructure.Extensions
             if (value.Count > valueLimit)
             {
                 throw new ArgumentOutOfRangeException(
-                    $"Value {value} longer than maximum block size."
+                    $"Value {value} longer than maximum limit size."
                 );
             }
         }
@@ -20,7 +20,7 @@ namespace SQRA.Infrastructure.Extensions
             if (value.Length > valueLimit)
             {
                 throw new ArgumentOutOfRangeException(
-                    $"Value {value} longer than maximum block size."
+                    $"Value {value} longer than maximum limit size."
                 );
             }
         }

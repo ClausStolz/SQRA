@@ -8,6 +8,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQRA.Generator", "SQRA.Gene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQRA.QR", "src\SQRA.QR\SQRA.QR.csproj", "{0E04D80B-ED7D-4571-B5A3-A750004CA018}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQRA.Tests", "SQRA.Tests", "{DE74A238-6DC3-415D-A5CB-55C3E7CF54F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQRA.Core.Test", "tests\SQRA.Core.Test\SQRA.Core.Test.csproj", "{2F678740-9E4D-48DC-A78D-18002F7E182B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +20,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1A43E084-BECE-4E2F-970E-AF7162FEC863} = {10763380-4FDA-4399-959F-F449582DADCB}
 		{0E04D80B-ED7D-4571-B5A3-A750004CA018} = {067C566C-179B-4597-9238-83FA38FF8CBF}
+		{2F678740-9E4D-48DC-A78D-18002F7E182B} = {DE74A238-6DC3-415D-A5CB-55C3E7CF54F8}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1A43E084-BECE-4E2F-970E-AF7162FEC863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -26,5 +31,9 @@ Global
 		{0E04D80B-ED7D-4571-B5A3-A750004CA018}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E04D80B-ED7D-4571-B5A3-A750004CA018}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E04D80B-ED7D-4571-B5A3-A750004CA018}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F678740-9E4D-48DC-A78D-18002F7E182B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F678740-9E4D-48DC-A78D-18002F7E182B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F678740-9E4D-48DC-A78D-18002F7E182B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F678740-9E4D-48DC-A78D-18002F7E182B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
