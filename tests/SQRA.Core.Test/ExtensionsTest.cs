@@ -18,5 +18,12 @@ namespace SQRA.Core.Test
                 obj.GetFirstIndex<int>(x => x >= value)
             );
         }
+        
+        [TestCase(7, new[] { true, true, true})]
+        [TestCase(85, new[] {true, false, true, false, true, false, true})]
+        public void GetBitsTest(int value, bool[] expectedArray)
+        {
+            Assert.That(value.GetBits(), Is.EqualTo(expectedArray));
+        }
     }
 }   
