@@ -5,11 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Services" />
+      <ProjectReference Include="..\SQRA.Infrastructure\SQRA.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SQRA.Infrastructure\SQRA.Infrastructure.csproj" />
+      <Folder Include="Services" />
     </ItemGroup>
 
 </Project>

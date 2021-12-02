@@ -5,9 +5,9 @@ namespace SQRA.QR.Configurations
     /// <summary>
     /// This configuration table contains numerical value for symbols.
     /// </summary>
-    public class AlphanumericValue
+    public static class AlphanumericValue
     {
-        private static readonly Dictionary<char, int> _alphanumericValueTable = new()
+        private static readonly Dictionary<char, byte> _alphanumericValueTable = new()
         {
             { '0',  0 }, { '1',  1 }, { '2',  2 }, { '3',  3 }, { '4',  4 }, 
             { '5',  5 }, { '6',  6 }, { '7',  7 }, { '8',  8 }, { '9',  9 }, 
@@ -19,5 +19,7 @@ namespace SQRA.QR.Configurations
             { 'Z', 35 }, { ' ', 36 }, { '$', 37 }, { '%', 38 }, { '*', 39 }, 
             { '+', 40 }, { '-', 41 }, { '.', 42 }, { '/', 43 }, { ':', 44 }   
         };
+
+        public static byte GetValue(char value) => _alphanumericValueTable[value];
     }
 }
