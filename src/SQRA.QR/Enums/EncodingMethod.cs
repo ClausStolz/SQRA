@@ -17,7 +17,7 @@ namespace SQRA.QR.Enums
         /// two-digit number is encoded with 7 bits, and if 1 character,
         /// then 4 bits.
         /// </summary>
-        Numeric,
+        Numeric = 0b0001,
         /// <summary>
         /// This type of encoding requires 11 bits per 2 characters.
         /// The entire character sequence is split into a group of 2,
@@ -30,7 +30,7 @@ namespace SQRA.QR.Enums
         /// then its value is immediately encoded with a 6-bit number
         /// and added to the bit sequence.
         /// </summary>
-        Alphanumeric,
+        Alphanumeric = 0b0010,
         /// <summary>
         /// This is a universal encoding method that can encode any character.
         /// The only drawback of this method is the relatively low information
@@ -38,6 +38,6 @@ namespace SQRA.QR.Enums
         /// (recommended in UTF-8) and the resulting byte sequence is taken
         /// unchanged.
         /// </summary>
-        Byte
+        Byte = 0b0100
     }
 }

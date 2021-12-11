@@ -28,14 +28,17 @@ namespace SQRA.QR.Configurations
             },
         };
 
-        public static bool CheckCorrectionSize(EncodingMethod encodingMethod, byte version, byte size) =>
+        public static byte GetSize(EncodingMethod encodingMethod, byte version) =>
             version switch
             {
-                (<= 9)  => size == _informationTable[encodingMethod][0], 
-                (<= 26) => size == _informationTable[encodingMethod][1],
-                (<= 40) => size == _informationTable[encodingMethod][2],
-                     _  => throw new ArgumentOutOfRangeException()
+                (<= 9)  => _informationTable[encodingMethod][0], 
+                (<= 26) => _informationTable[encodingMethod][1],
+                (<= 40) => _informationTable[encodingMethod][2],
+                _  => throw new ArgumentOutOfRangeException()
             };
-        
+
+        public static bool CheckCorrectionSize(EncodingMethod encodingMethod, byte version, byte size) =>
+            size == GetSize(encodingMethod, version);
+
     }
 }

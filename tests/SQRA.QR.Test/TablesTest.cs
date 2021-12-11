@@ -54,5 +54,17 @@ namespace SQRA.QR.Test
                 ServiceInformationSize.CheckCorrectionSize(encodingMethod, version, size)
             );
         }
+        
+        [TestCase(CorrectionLevel.L, 5, 1)]
+        [TestCase(CorrectionLevel.M, 10, 5)]
+        [TestCase(CorrectionLevel.Q, 20, 20)]
+        [TestCase(CorrectionLevel.H, 30, 48)]
+        public void GetBlocksSizeTest(CorrectionLevel level, int version, int expectedResult)
+        {
+            Assert.AreEqual(
+                expectedResult,
+                BlocksSize.GetBlocksCount(level, version)
+            );
+        }
     }
 }
